@@ -1,0 +1,24 @@
+﻿@model User
+@{
+	ViewData["Title"] = "Create user";
+}
+<div class="container-fluid position-absolute top-50 start-50 translate-middle w-50 p-4 border border-3 rounded-3">
+	<form method="post" asp-controller="Home" asp-action="Check" class="row g-3">
+		<div>
+			<h2 class="col-8 mx-auto p-2"> Добавление пользователя</h2>
+		</div>
+		<div class="col-8 mx-auto p-2">
+			<label asp-for="Name" class="from-label"></label>
+			<input asp-for="Name" class="form-control" />
+			<span asp-validation-for="Name"></span>
+		</div>
+		<div class="col-8 mx-auto p-2">
+			<label asp-for="Age" class="form-label"></label>
+			<input asp-for="Age" class="form-control" />
+			<span asp-validation-for="Age"></span>
+		</div>
+		<div class="col-8 mx-auto p-2">
+			<input type="submit" value="Создать" class="btn btn-success" />
+		</div>
+	</form>
+</div>

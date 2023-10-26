@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebApplication10.Models.User>
+@{
+	ViewData["Title"] = "Table of Users";
+}
+<div>
+    <h3>Пользователи</h3>
+    <table class="table table-hover">
+        <tr class="header">
+            <td><p>Имя</p></td>
+            <td><p>Возраст</p></td>
+        </tr>
+        @foreach (WebApplication10.Models.User b in Model)
+        {
+            <tr>
+                <form method="get" asp-controller="Home" asp-action="Change" asp-route-id="@b.Id">
+                <td><label class="form-label">@b.Name</label></td>
+                <td><label class="form-label">@b.Age</label></td>
+                <td></td>
+                <td><input type="submit" value="Изменить" class="btn btn-primary"/></td>
+                </form>
+                <td>
+                    <form formmethod="post" asp-controller="Home" asp-action="Delete" asp-route-id="@b.Id">
+                        <input type="submit" value="Удалить" class="btn btn-danger" />
+                        </form>
+                </td>
+            </tr>
+        }
+    </table>
+    <form asp-controller="Home" asp-action="CreateUser">
+    <input type="submit" value="Добавить пользователя" asp-controller="Home" asp-action="CreateUser" class="btn btn-primary">
+    </form>
+</div>
