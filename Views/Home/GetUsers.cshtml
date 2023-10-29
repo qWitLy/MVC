@@ -2,31 +2,53 @@
 @{
 	ViewData["Title"] = "Table of Users";
 }
+<form method="get" asp-controller="Home" asp-action="GetUsersWithSort" class="mt-3" style="margin-down:0px">
+	<div class="row g-3">
+		<div class="col-1" style="width:7%; margin-top: 22px;padding-left: 30px;margin-left: 31%;">
+			<label class="">Фильтр: </label>
+		</div>
+		<div class="col-2" style="width:11% ">
+			@Html.DropDownList("sort", new SelectList(new List<string>(){"По алфавиту","По возрасту"}),
+			htmlAttributes: new { @class = "form-control" })
+		</div>
+		<div class="col-1" style="width:9%; margin-top: 22px;padding-left: 10px;">
+			<label class="">Сортировать: </label>
+		</div>
+		<div class="col-2" style="width:13%">
+			@Html.DropDownList("vector",  new SelectList(new List<string>(){"По возрастанию","По убыванию"}),
+			htmlAttributes: new { @class = "form-control" })
+		</div>
+		<div class="col-2">
+			<input type="submit" value="Применить" class="btn btn-primary" />
+		</div>
+	</div>
+</form>
+<hr />
 <div>
-    <h3>Пользователи</h3>
-    <table class="table table-hover">
-        <tr class="header">
-            <td><p>Имя</p></td>
-            <td><p>Возраст</p></td>
-        </tr>
-        @foreach (WebApplication10.Models.User b in Model)
-        {
-            <tr>
-                <form method="get" asp-controller="Home" asp-action="Change" asp-route-id="@b.Id">
-                <td><label class="form-label">@b.Name</label></td>
-                <td><label class="form-label">@b.Age</label></td>
-                <td></td>
-                <td><input type="submit" value="Изменить" class="btn btn-primary"/></td>
-                </form>
-                <td>
-                    <form formmethod="post" asp-controller="Home" asp-action="Delete" asp-route-id="@b.Id">
-                        <input type="submit" value="Удалить" class="btn btn-danger" />
-                        </form>
-                </td>
-            </tr>
-        }
-    </table>
-    <form asp-controller="Home" asp-action="CreateUser">
-    <input type="submit" value="Добавить пользователя" asp-controller="Home" asp-action="CreateUser" class="btn btn-primary">
-    </form>
+	<table class="table table-hover">
+		<tr class="header">
+			<td><p>Имя</p></td>
+			<td><p>Возраст</p></td>
+		</tr>
+		@foreach (WebApplication10.Models.User b in Model)
+		{
+
+			<tr>
+				<form method="get" asp-controller="Home" asp-action="Change" asp-route-id="@b.Id">
+				<td><label class="form-label">@b.Name</label></td>
+				<td><label class="form-label">@b.Age</label></td>
+				<td></td>
+				<td><input type="submit" value="Изменить" class="btn btn-primary" /></td>
+				</form>
+				<td>
+					<form formmethod="post" asp-controller="Home" asp-action="Delete" asp-route-id="@b.Id">
+						<input type="submit" value="Удалить" class="btn btn-danger" />
+					</form>
+				</td>
+			</tr>
+		}
+	</table>
+	<form asp-controller="Home" asp-action="CreateUser">
+		<input type="submit" value="Добавить пользователя" asp-controller="Home" asp-action="CreateUser" class="btn btn-primary">
+	</form>
 </div>

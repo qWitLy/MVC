@@ -10,15 +10,26 @@ namespace WebApplication10.Controllers
     {
         private readonly ApplicationContext ac = new(new DbContextOptionsBuilder<ApplicationContext>()
             .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MVCDB;Trusted_Connection=True;").Options);
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
         public IActionResult GetUsers()
         {
             return View(ac.Users);
+        }
+        public IActionResult GetUsersWithSort(string? sort,string? vector)
+        {
+            if(sort=="По алфавиту" && vector=="По возрастанию")
+            return View("GetUsers", ac.Users.OrderByDescending(option=>option.Name));
+            if(sort=="По возрасту" && vector=="По возрастанию")
+            return View("GetUsers",ac.Users.OrderBy(option=>option.Age));
+            if(sort=="По возрасту" && vector=="По убыванию")
+            return View("GetUsers",ac.Users.OrderByDescending(option=>option.Age));
+            if(sort=="По алфавиту" && vector=="По убыванию")
+            return View("GetUsers", ac.Users.OrderBy(option=>option.Name));
+
+
+
+
+            return View("GetUsers",ac.Users);
         }
         public IActionResult CreateUser()
         {
