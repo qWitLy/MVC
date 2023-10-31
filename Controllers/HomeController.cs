@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using WebApplication10.Data;
+using Microsoft.AspNetCore.Authorization;
 using WebApplication10.Models;
 
 namespace WebApplication10.Controllers
@@ -11,10 +12,12 @@ namespace WebApplication10.Controllers
         private readonly ApplicationContext ac = new(new DbContextOptionsBuilder<ApplicationContext>()
             .UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=MVCDB;Trusted_Connection=True;").Options);
 
-        public IActionResult GetUsers()
+		[Authorize]
+		public IActionResult GetUsers()
         {
             return View(ac.Users);
         }
+        [Authorize]
         public IActionResult GetUsersWithSort(string? sort,string? vector)
         {
             if(sort=="По алфавиту" && vector=="По возрастанию")
@@ -31,18 +34,22 @@ namespace WebApplication10.Controllers
 
             return View("GetUsers",ac.Users);
         }
-        public IActionResult CreateUser()
+
+		[Authorize]
+		public IActionResult CreateUser()
         {
             return View();
         }
-        [HttpGet]
+		[Authorize]
+		[HttpGet]
         public IActionResult Change(int id)
         {
             User? user = ac.Users.FirstOrDefault(data => data.Id == id);
             if (user == null) return View("GetUsers", ac.Users);
             return View(user);
         }
-        [HttpPost]
+		[Authorize]
+		[HttpPost]
         public IActionResult Change(User user)
         {
             ac.Users.Update(user);
@@ -50,7 +57,8 @@ namespace WebApplication10.Controllers
             return View("GetUsers",ac.Users);
 
         }
-        [HttpPost]
+		[Authorize]
+		[HttpPost]
         public IActionResult Delete(int id)
         {
             User? user = ac.Users.Find(id);
@@ -60,13 +68,19 @@ namespace WebApplication10.Controllers
             ac.SaveChanges();
             return View("GetUsers",ac.Users);
         }
-        [HttpPost]
+		[Authorize]
+		[HttpPost]
         public IActionResult Check(User user)
         {
-            Console.Write(user.Name + user.Age);
-            ac.Add(user);
-            ac.SaveChanges();
-            return View("GetUsers",ac.Users);
+            if (ModelState.IsValid)
+            {
+
+
+                ac.Add(user);
+                ac.SaveChanges();
+                return View("GetUsers", ac.Users);
+            }
+            return View("CreateUser");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

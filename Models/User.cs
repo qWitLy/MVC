@@ -4,12 +4,12 @@ namespace WebApplication10.Models
 {
     public class User
     {
-        public int Id { get; set; }
+        public Int32 Id { get; set; }
         [Display(Name="Имя")]
         [Required(ErrorMessage ="Поле не должно быть пустым")]
-        public string Name { get; set; }
+        public String Name { get; set; }
         [Display(Name="Возраст")]
         [Required(ErrorMessage ="Поле не должно быть пустым")]
-        public int Age { get; set; }
+        public Int32 Age { get; set; }
     }
 }

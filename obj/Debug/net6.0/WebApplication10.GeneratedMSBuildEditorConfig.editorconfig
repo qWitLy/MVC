@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\solda\source\repos\WebApplication10
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/solda/source/repos/WebApplication10/Views/Athorization/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXRob3JpemF0aW9uXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/solda/source/repos/WebApplication10/Views/Athorization/Registration.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXRob3JpemF0aW9uXFJlZ2lzdHJhdGlvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/solda/source/repos/WebApplication10/Views/Home/Change.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDaGFuZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,29 @@
+﻿@model AuthorizeUser
+@{
+	ViewData["Title"] = "Authorization";
+}
+<div class="container-fluid position-absolute top-50 start-50 translate-middle w-50 p-4 border border-3 rounded-3">
+	<form method="post" action="/Athorization/Login" class="row g-3">
+		<div>
+			<h2 class="col-8 mx-auto p-2"> Авторизация пользователя</h2>
+		</div>
+		<div class="col-8 mx-auto p-2">
+			<label asp-for="Login" class="from-label"></label>
+			<input asp-for="Login" type="text" name="Login" class="form-control" />
+			<span asp-validation-for="Login"></span>
+		</div>
+		<div class="col-8 mx-auto p-2">
+			<label asp-for="Password" class="form-label"></label>
+			<input asp-for="Password" type="password" name="Password" class="form-control" />
+			<span asp-validation-for="Password"></span>
+		</div>
+		<div class="col-8 mx-auto p-2" style="width: 40%;">
+			<input type="submit" value="Войти" class="btn btn-success" />
+		</div>
+		<div class=" d-flex flex-row-reverse" style="padding-right: 128px;padding-top: 20px;width:200px">
+			<a href="/Athorization/Registration"  class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="#">
+				Зарегестрироваться
+			</a >
+		</div>
+	</form>
+</div>
